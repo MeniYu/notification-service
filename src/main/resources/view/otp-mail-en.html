@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" lang="fa" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -96,7 +96,7 @@
                             <br>
                             You have requested to connect the email (EMAIL ADDRESS) with an account number. Please find OTP below to complete this setup;
                         </p>
-                        <p style="padding: 1rem 0; width: 100%; font-family: 'Karla', sans-serif; font-size: 16px; color:  #7A869A; font-weight: 400; border-top: 1px solid #F2F4F6; padding-bottom: 3rem; line-height: 28px; text-align: center;" th:text=""${otpCode}>
+                        <p style="padding: 1rem 0; width: 100%; font-family: 'Karla', sans-serif; font-size: 16px; color:  #7A869A; font-weight: 400; border-top: 1px solid #F2F4F6; padding-bottom: 3rem; line-height: 28px; text-align: center;" th:text="${otpCode}">
                         </p>
                         <p style="padding: 1rem 0; width: 100%; font-family: 'Karla', sans-serif; font-size: 16px; color:  #7A869A; font-weight: 400; border-top: 1px solid #F2F4F6; padding-bottom: 3rem; line-height: 28px; text-align: center;">
                             If you did not request this setup, please ignore this email.</p>

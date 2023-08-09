@@ -26,7 +26,7 @@ public class GmailConfiguration {
     private int port;
 
     @Value("${meniyu.mail.username}")
-    public static String username;
+    public String username;
 
     @Value("${meniyu.mail.password}")
     private String password;
@@ -42,7 +42,7 @@ public class GmailConfiguration {
         JavaMailSenderImpl mail = new JavaMailSenderImpl();
         Properties props = new Properties();
         props.put("mail.smtp.auth", auth);
-        props.put("mail.smtp.startTls.enable", startTls);
+        props.put("mail.smtp.starttls.enable", startTls);
 
         mail.setJavaMailProperties(props);
         mail.setUsername(username);

@@ -1,6 +1,8 @@
 package io.incondensable.application.receiver;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.incondensable.application.ObjectConverter;
 import io.incondensable.application.domain.OtpGeneratedPayload;
 import io.incondensable.application.service.MailService;
@@ -28,11 +30,12 @@ public class OtpRegisteredListener {
         this.mailService = mailService;
     }
 
-    @RabbitListener(queues = {"owner_fanout_queue"})
+    @RabbitListener(queues = {"notification_queue"})
     public void receiveOtp(String payload) throws JsonProcessingException {
-        mailService.sendOtpCode(
-                converter.convert(payload)
-        );
+        ObjectMapper mapper = new ObjectMapper();
+        OtpGeneratedPayload otp = mapper.readValue(payload, new TypeReference<>() {
+        });
+        mailService.sendOtpCode(otp);
     }
 
 }

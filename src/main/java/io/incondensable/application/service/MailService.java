@@ -1,8 +1,8 @@
 package io.incondensable.application.service;
 
-import io.incondensable.application.config.GmailConfiguration;
 import io.incondensable.application.domain.OtpGeneratedPayload;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,9 @@ import java.nio.charset.StandardCharsets;
  */
 @Service
 public class MailService {
+
+    @Value("${meniyu.mail.username}")
+    public String username;
 
     private final JavaMailSender mailSender;
     private final SpringTemplateEngine thymeleaf;
@@ -33,10 +36,10 @@ public class MailService {
 
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, StandardCharsets.UTF_8.name());
-            helper.setFrom(GmailConfiguration.username);
+            helper.setFrom(username);
             helper.setTo(otp.getEmailAddress());
             helper.setSubject("One Time Password");
-            helper.setText(htmlContent);
+            helper.setText(htmlContent, true);
 
             message.saveChanges();
             mailSender.send(message);

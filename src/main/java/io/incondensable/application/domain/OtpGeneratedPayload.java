@@ -11,6 +11,7 @@ public class OtpGeneratedPayload implements Serializable {
     @Serial
     private final static long serialVersionUID = 806953693294748654L;
 
+    private String subject;
     private String userId;
     private String emailAddress;
     private int otpCode;
@@ -22,6 +23,14 @@ public class OtpGeneratedPayload implements Serializable {
         this.userId = userId;
         this.emailAddress = emailAddress;
         this.otpCode = otpCode;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getUserId() {
@@ -51,7 +60,8 @@ public class OtpGeneratedPayload implements Serializable {
     @Override
     public String toString() {
         return "OtpGeneratedPayload{" +
-                "userId='" + userId + '\'' +
+                "subject='" + subject + '\'' +
+                ", userId='" + userId + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
                 ", otpCode=" + otpCode +
                 '}';
